@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href= "css/style.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="left_menu">
+        <div class="nav_home">
+            <div class="home_icon">
+                <a class="home_link" href="#"><i class="fas fa-home"></i></a>
+            </div>
+            <p class="team_name">Team name</p>
+        </div>
+        <ul class="nav_list">
+            <li class="nav_list-item">
+                <a class="nav_list-link" href="#addTask" data-role="nav-task" >
+                    <div class="icon_wrap">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <p class="nav_list-text">Add task</p>
+                </a>
+            </li>
+            <li class="nav_list-item">
+                <a class="nav_list-link" href="#backlog" data-role="nav-backlog" >
+                    <div class="icon_wrap">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <p class="nav_list-text">Backlog</p>
+                </a>
+            </li>
+            <li class="nav_list-item">
+                <a class="nav_list-link" href="#board" data-role="nav-board">
+                    <div class="icon_wrap">
+                        <i class="fas fa-th"></i>
+                    </div>
+                    <p class="nav_list-text">Board</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main_board" id="results"></div>
+
+</div>
+
+<script src ="js/app.js" type="module"> </script>
+
+<script id="addTaskTemplate" type="text/template">
+    <main id="app">
+        <header>
+            <h1>Todo</h1>
+        </header>
+
+        <ul id="todo-list"></ul>
+
+        <form id="todo-form">
+            <input id="add-input" type="text" placeholder="Add new task...">
+            <button id="add-button" type="submit">Add</button>
+        </form>
+    </main>
+</script>
+
+<script id="backlogTemplate" type="text/template">
+</script>
+
+<script id="boardTemplate" type="text/template">
+    <ul class="list_headings">
+        <li class="list_headings-item todo-head">Todo</li>
+        <li class="list_headings-item active-head">Active</li>
+        <li class="list_headings-item done-head">Done</li>
+    </ul>
+    <div class="todo-task">
+
+    </div>
+</script>
+
+
+
+
+
+</body>
+</html>
