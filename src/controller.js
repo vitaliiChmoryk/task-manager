@@ -3,12 +3,14 @@ import Model from './model.js';
 import BacklogPage from './pages/backlog.js';
 import boardPage from './pages/board.js';
 import AddTaskPage from './pages/addTask';
-import {View} from './view';
-import { save, load } from './helpers';
+import {ViewAddTask, ViewBacklog } from './view';
+import { save, load} from './helpers';
 
 const boardNavNode = document.querySelector('[data-role=nav-board]');
 const backlogNavNode = document.querySelector('[data-role=nav-backlog]');
 const addTaskNavNode = document.querySelector('[data-role=nav-task]');
+
+
 
 let activeNavNode;
 class Controller {
@@ -51,6 +53,8 @@ class Controller {
         this.view.removeItem(id);
     }
 }
+
+
 function setActiveNavNode(node) {
     if (activeNavNode) {
         activeNavNode.classList.remove('active');
@@ -60,12 +64,41 @@ function setActiveNavNode(node) {
     activeNavNode.classList.add('active');
 }
 
+function compare( a, b ) {
+    if ( a.title < b.title ){
+        return -1;
+    }
+    if ( a.title > b.title ){
+        return 1;
+    }
+    return 0;
+}
+
 export default {
     async backlogRoute() {
-
+        const sorted = document.querySelector('.sort');
         BacklogPage.render();
         setActiveNavNode(backlogNavNode);
+        const state = load();
 
+        const model = new Model(state || undefined);
+        model.on('change', state => save(state));
+
+        const view = new ViewBacklog();
+        const controller = new Controller(model, view);
+
+        // sorted.addEventListener('click', () => {
+        //     state.sort(compare);
+        //     BacklogPage.render();
+        //     setActiveNavNode(backlogNavNode);
+        //     const state = load();
+        //
+        //     const model = new Model(state || undefined);
+        //     model.on('change', state => save(state));
+        //
+        //     const view = new ViewBacklog();
+        //     const controller = new Controller(model, view);
+        // });
 
     },
     async boardRoute() {
@@ -76,11 +109,10 @@ export default {
         AddTaskPage.render();
         setActiveNavNode(addTaskNavNode);
         const state = load();
-
         const model = new Model(state || undefined);
-        model.on('change', state => save(state));
 
-        const view = new View();
+        model.on('change', state => save(state));
+        const view = new ViewAddTask ();
         const controller = new Controller(model, view);
     }
 };

@@ -1,7 +1,7 @@
 import * as Handlebars from "./handlebars-v4.1.2";
 import { EventEmitter, createElement } from './helpers';
 
-class View extends EventEmitter {
+class ViewAddTask extends EventEmitter {
     constructor() {
         super();
 
@@ -94,6 +94,7 @@ class View extends EventEmitter {
 
         this.input.value = '';
         this.list.appendChild(listItem);
+
     }
 
     toggleItem(todo) {
@@ -126,6 +127,51 @@ class View extends EventEmitter {
         this.list.removeChild(listItem);
     }
 }
+
+class ViewBacklog extends EventEmitter {
+    constructor() {
+        super();
+        this.list = document.getElementById('backlog-list');
+        this.quality = document.querySelector('.backlog-title')
+    }
+
+    createListItem(todo) {
+        const label = createElement('label', { className: 'title' }, todo.title);
+        const item = createElement('li', { className: `backlog-item${todo.completed ? ' completed': ''}`, 'data-id': todo.id }, label);
+
+        return item
+    }
+
+    addEventListener() {
+        let sorted = document.querySelector('.sort');
+
+        return sorted
+}
+
+    show(todos) {
+        let count = 0;
+        todos.forEach(todo => {
+            const listItem = this.createListItem(todo);
+            this.list.appendChild(listItem);
+            if(todo.completed === true) count++;
+        });
+
+        let counter = document.createElement('div');
+        counter.className = 'quality';
+        let counterValue = ((count/todos.length)*100).toFixed(2);
+
+        if (count === 0) {
+            counter.innerText = 'completed: ' + count + '%';
+        } else {
+            counter.innerText = 'completed: ' + counterValue + '%';
+        }
+
+        this.quality.appendChild(counter);
+    }
+
+
+}
+
 function render(templateName, model) {
     templateName = templateName + 'Template';
 
@@ -136,4 +182,4 @@ function render(templateName, model) {
 
     return renderFn(model);
 }
-export  {render, View};
+export  {render, ViewAddTask, ViewBacklog };
