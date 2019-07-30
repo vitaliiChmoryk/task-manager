@@ -46,7 +46,9 @@
             </li>
         </ul>
     </div>
+
     <div class="main_board" id="results"></div>
+
 
 </div>
 
@@ -68,6 +70,25 @@
 </script>
 
 <script id="backlogTemplate" type="text/template">
+    <div class="backlog-top">
+        <div class="filter_wrap">
+            <h4>Filters:</h4>
+            <ul class="filter-list">
+                <li class="filter-list-item">Completed</li>
+                <li class="filter-list-item">Uncompleted</li>
+                <li class="filter-list-item"></li>
+            </ul>
+        </div>
+        <input type="text" class="backlog_search" placeholder="Issue search...">
+    </div>
+    <div class="backlog_content">
+        <div class ="backlog-title">
+            <h4>Task</h4>
+        </div>
+        <div class="sort">sort</div>
+        <ul id="backlog-list"></ul>
+    </div>
+
 </script>
 
 <script id="boardTemplate" type="text/template">
