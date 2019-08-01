@@ -8,7 +8,32 @@
     <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href= "css/style.css">
+    <style>
+        #div1, #div2, #div3 {
+            float: left;
+            width: 100px;
+            height: 35px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
 
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -47,7 +72,9 @@
         </ul>
     </div>
 
-    <div class="main_board" id="results"></div>
+    <div class="main_board" id="results">
+
+    </div>
 
 
 </div>
@@ -74,9 +101,9 @@
         <div class="filter_wrap">
             <h4>Filters:</h4>
             <ul class="filter-list">
-                <li class="filter-list-item">Completed</li>
-                <li class="filter-list-item">Uncompleted</li>
-                <li class="filter-list-item"></li>
+                <li class="filter-list-item" data-role="completed-task">Completed</li>
+                <li class="filter-list-item" data-role="uncompleted-task">Uncompleted</li>
+                <li class="filter-list-item" data-role="all-task">All</li>
             </ul>
         </div>
         <input type="text" class="backlog_search" placeholder="Issue search...">
@@ -85,7 +112,12 @@
         <div class ="backlog-title">
             <h4>Task</h4>
         </div>
-        <div class="sort">sort</div>
+        <div class="sort">
+            <p>sort:</p>
+            <div class="arrow_up">&#8593;</div>
+            <div class="arrow_down">&#8595;</div>
+        </div>
+
         <ul id="backlog-list"></ul>
     </div>
 
@@ -97,14 +129,16 @@
         <li class="list_headings-item active-head">Active</li>
         <li class="list_headings-item done-head">Done</li>
     </ul>
-    <div class="todo-task">
 
-    </div>
+<!--    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">-->
+<!--        <div draggable="true" ondragstart="drag(event)" id="drag1">test</div>-->
+<!--    </div>-->
+
+<!--    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>-->
+<!--    <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>-->
+    <div class="todo_task"></div>
+    <div class="active_task"></div>
+    <div class="done_task"></div>
 </script>
-
-
-
-
-
 </body>
 </html>

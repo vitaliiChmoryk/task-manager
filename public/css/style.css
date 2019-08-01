@@ -38,6 +38,7 @@ a {
   font-family: 'Poppins',  sans-serif;
   font-size: 1.125rem;
   color: #111111;
+  margin: 16px 20px;
 }
 
 .list_headings-item {
@@ -110,10 +111,6 @@ a {
 
 .nav_list-link:hover {
   background-color: #364359;
-}
-
-.active {
-  color: #38a2f1;
 }
 
 .icon_wrap {
@@ -346,6 +343,17 @@ header h1 {
   font-size: 0.75rem;
   color: #38A2F1;
   opacity: 0.4;
+  cursor: pointer;
+  border-right: 1px solid #DADADA;
+  padding-right: 10px;
+}
+
+.filter-list-item:last-child {
+  margin-right: 0;
+}
+
+.filter-list-item:hover {
+  opacity: 1;
 }
 
 .backlog_search {
@@ -400,6 +408,43 @@ header h1 {
 }
 
 .sort {
-  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   margin-right: 30px;
+}
+
+.active {
+  color: #38a2f1;
+  opacity: 1;
+}
+
+.arrow_up,
+.arrow_down {
+  font-size: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.drag {
+  width: 200px;
+  height: 200px;
+  background: blue;
+  display: inline-block;
+  margin-right: 10px;
+}
+#boxB{
+  margin-right: 0px;
+}
+#big {
+  width: 415px;
+  height: 400px;
+  background: red;
+  margin: 20px auto;
+}
+section {
+  width: 415px;
+  height: 200px;
+  background:gray;
+  margin: 20px auto;
 }
