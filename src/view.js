@@ -142,11 +142,6 @@ class ViewBacklog extends EventEmitter {
         return item
     }
 
-    addEventListener() {
-        let sorted = document.querySelector('.sort');
-
-        return sorted
-}
 
     show(todos) {
         let count = 0;
@@ -169,6 +164,55 @@ class ViewBacklog extends EventEmitter {
         this.quality.appendChild(counter);
     }
 
+    static getArrowUp(){
+        const elem = document.querySelector('.arrow_up');
+        return elem
+    }
+
+    static getArrowDown(){
+        const elem = document.querySelector('.arrow_down');
+        return elem
+    }
+
+    static getFilterCompl() {
+        const elem = document.querySelector('[data-role=completed-task');
+        return elem
+    }
+
+    static getFilterUncompl() {
+        const elem = document.querySelector('[data-role=uncompleted-task');
+        return elem
+    }
+
+    static getFilterAll() {
+        const elem = document.querySelector('[data-role=all-task');
+        return elem
+    }
+
+}
+
+class ViewBoard extends EventEmitter {
+    constructor() {
+        super();
+        this.todo = document.querySelector('.todo_task');
+        this.active = document.querySelector('.active_task');
+        this.done = document.querySelector('.done_task');
+    }
+
+    createListItem(todo) {
+        const label = createElement('label', { className: 'title' }, todo.title);
+        const item = createElement('div', { className: `board_item${todo.completed ? ' completed': ''}`, 'data-id': todo.id }, label);
+
+        return item
+    }
+
+
+    show(todos) {
+        todos.forEach(todo => {
+            const listItem = this.createListItem(todo);
+            this.todo.appendChild(listItem);
+        });
+    }
 
 }
 
@@ -182,4 +226,4 @@ function render(templateName, model) {
 
     return renderFn(model);
 }
-export  {render, ViewAddTask, ViewBacklog };
+export  {render, ViewAddTask, ViewBacklog, ViewBoard };
