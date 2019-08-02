@@ -227,7 +227,32 @@ function allTasks() {
     all.addEventListener('click', allTasks);
 }
 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
 export default {
+    async addTaskRoute() {
+        AddTaskPage.render();
+        setActiveNavNode(addTaskNavNode);
+        const state = load();
+        const model = new Model(state || undefined);
+
+        model.on('change', state => save(state));
+        const view = new ViewAddTask ();
+        const controller = new Controller(model, view);
+    },
+
     async backlogRoute() {
         BacklogPage.render();
         setActiveNavNode(backlogNavNode);
@@ -240,8 +265,6 @@ export default {
 
         const state = load();
         const model = new Model(state || undefined);
-
-        model.on('change', state => save(state));
 
         const view = new ViewBacklog();
         const controller = new Controller(model, view);
@@ -256,23 +279,42 @@ export default {
 
     async boardRoute() {
         BoardPage.render();
-        setActiveNavNode(addTaskNavNode);
+        setActiveNavNode(boardNavNode);
+        const boardTodo = ViewBoard.getBoardElemTodo();
+        const boardActive = ViewBoard.getBoardElemActive();
+        const boardDone = ViewBoard.getBoardElemDone();
+
         const state = load();
         const model = new Model(state || undefined);
 
         model.on('change', state => save(state));
+
         const view = new ViewBoard();
         const controller = new Controller(model, view);
-    },
 
-    async addTaskRoute() {
-        AddTaskPage.render();
-        setActiveNavNode(addTaskNavNode);
-        const state = load();
-        const model = new Model(state || undefined);
+        boardTodo.addEventListener("mouseover", function(e) {
+            if(e.target && e.target.nodeName === "LI") {
+                e.target.addEventListener('dragstart', e => drag(event))
+            }
+        });
 
-        model.on('change', state => save(state));
-        const view = new ViewAddTask ();
-        const controller = new Controller(model, view);
+        boardActive.addEventListener("mouseover", function(e) {
+            if(e.target && e.target.nodeName === "LI") {
+                e.target.addEventListener('dragstart', e => drag(event))
+            }
+        });
+
+        boardDone.addEventListener("mouseover", function(e) {
+            if(e.target && e.target.nodeName === "LI") {
+                e.target.addEventListener('dragstart', e => drag(event))
+            }
+        });
+
+        boardTodo.addEventListener('drop', evt => drop(event));
+        boardTodo.addEventListener('dragover', evt => allowDrop(event));
+        boardActive.addEventListener('drop', evt => drop(event));
+        boardActive.addEventListener('dragover', evt => allowDrop(event));
+        boardDone.addEventListener('drop', evt => drop(event));
+        boardDone.addEventListener('dragover', evt => allowDrop(event));
     }
 };

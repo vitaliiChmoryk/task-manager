@@ -433,18 +433,26 @@ header h1 {
   display: inline-block;
   margin-right: 10px;
 }
-#boxB{
-  margin-right: 0px;
+
+.board_wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 20px;
 }
-#big {
-  width: 415px;
-  height: 400px;
-  background: red;
-  margin: 20px auto;
+
+.board_wrap ul {
+  width: 31%;
 }
-section {
-  width: 415px;
-  height: 200px;
-  background:gray;
-  margin: 20px auto;
+
+.board_item {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #eee;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+.board_item:last-child {
+  margin-bottom: 100px;
 }

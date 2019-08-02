@@ -201,8 +201,7 @@ class ViewBoard extends EventEmitter {
 
     createListItem(todo) {
         const label = createElement('label', { className: 'title' }, todo.title);
-        const item = createElement('div', { className: `board_item${todo.completed ? ' completed': ''}`, 'data-id': todo.id }, label);
-
+        const item = createElement('li', { className: `board_item${todo.completed ? ' completed': ''}`, 'id': todo.id, 'draggable':"true" }, label);
         return item
     }
 
@@ -210,9 +209,45 @@ class ViewBoard extends EventEmitter {
     show(todos) {
         todos.forEach(todo => {
             const listItem = this.createListItem(todo);
-            this.todo.appendChild(listItem);
+            if(todo.completed) {
+                this.done.appendChild(listItem);
+            } else {
+                this.todo.appendChild(listItem);
+            }
         });
     }
+    findListItem(id) {
+        return this.list.querySelector(`[id="${id}"]`);
+    }
+
+    toggleItem(todo) {
+        const listItem = this.findListItem(todo.id);
+        let result = parent.contains(listItem);
+        return console.log(result);
+        // checkbox.checked = todo.completed;
+        //
+        // if (todo.completed) {
+        //     listItem.classList.add('completed');
+        // } else {
+        //     listItem.classList.remove('completed');
+        // }
+    }
+
+    static getBoardElemTodo() {
+        const elem = document.querySelector('.todo_task');
+        return elem
+    }
+
+    static getBoardElemActive() {
+        const elem = document.querySelector('.active_task');
+        return elem
+    }
+
+    static getBoardElemDone() {
+        const elem = document.querySelector('.done_task');
+        return elem
+    }
+
 
 }
 

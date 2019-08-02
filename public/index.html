@@ -8,32 +8,7 @@
     <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href= "css/style.css">
-    <style>
-        #div1, #div2, #div3 {
-            float: left;
-            width: 100px;
-            height: 35px;
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid black;
-        }
-    </style>
 
-    <script>
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
-        }
-    </script>
 </head>
 <body>
 <div class="container">
@@ -130,15 +105,12 @@
         <li class="list_headings-item done-head">Done</li>
     </ul>
 
-<!--    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">-->
-<!--        <div draggable="true" ondragstart="drag(event)" id="drag1">test</div>-->
-<!--    </div>-->
+    <div class="board_wrap">
+        <ul class="todo_task"></ul>
+        <ul class="active_task"></ul>
+        <ul class="done_task"></ul>
+    </div>
 
-<!--    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>-->
-<!--    <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>-->
-    <div class="todo_task"></div>
-    <div class="active_task"></div>
-    <div class="done_task"></div>
 </script>
 </body>
 </html>
