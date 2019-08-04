@@ -1,0 +1,306 @@
+@font-face {
+  font-family: Poppins;
+  src: url(../../fonts/poppins/Poppins-Light.otf);
+}
+
+@font-face {
+  font-family: Dosis;
+  src: url(../fonts/Dosis-SemiBold.ttf);
+}
+nav {
+  margin: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Poppins',  sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+#header {
+  width: 100%;
+  padding: 6px 10px 22px 20px;
+  background-color: #27303f;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+#logo {
+  line-height: 1;
+  display: block;
+  font-family: Dosis, sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+
+.right_menu {
+  display: flex;
+  position: relative;
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+
+}
+
+.menu_item {
+  border-right: 1px solid #DADADA;
+  padding-right: 25px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 25px;
+}
+
+.submenu {
+  position: absolute;
+  z-index: 10;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  display: none;
+  background: #27303f;
+  list-style: none;
+  padding: 0;
+
+}
+
+.submenu li a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-top: 10px;
+  display: block;
+  padding: 10px 15px;
+  outline: none;
+  font-family: 'Lora', serif;
+  transition: .5s linear;
+}
+
+ul li:hover .submenu {
+  display: block;
+}
+
+.fa {
+  padding-left: 10px;
+}
+
+.fa,
+.fas {
+  font-family: "FontAwesome", sans-serif;
+  color: inherit;
+  font-style: normal;
+}
+
+.nav_bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #ffffff;
+}
+
+.promo {
+  background: url(../img/bg-home.jpg) #30446c;
+  text-align: center;
+  color: #ffffff;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 105px 0 90px;
+}
+
+.promo h1 {
+  font-weight: 600;
+  letter-spacing: 6px;
+  font-family: Poppins, sans-serif;
+  text-transform: uppercase;
+}
+
+.promo h2 {
+  margin-bottom: 65px;
+  font-weight: 400;
+  letter-spacing: 3px;
+}
+
+.button_start {
+  display: block;
+  width: 240px;
+  height: 55px;
+  line-height: 55px;
+  margin: 0 auto 15px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #38a2f1;
+  font-weight: 700;
+}
+
+.sub_login {
+  font-size: 0.86rem;
+}
+
+.login_now {
+  color: #38a2f1;
+  text-decoration: none;
+}
+
+.features {
+  color: #3d434d;
+  padding: 60px 0;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.features_content {
+  display: flex;
+  justify-content: center;
+}
+
+.features_content-items {
+  margin-right: 40px;
+}
+
+.features_content-item p {
+  width: 400px;
+}
+
+.slider_container {
+  max-width: 550px;
+  width: 100%;
+}
+
+.slide {
+  text-align: center;
+}
+
+button.slick-prev.slick-arrow,
+button.slick-next.slick-arrow{
+  display: none!important;
+}
+
+.organise_team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  background-color: #30446c;
+  color: #ffffff;
+}
+
+.organise_team img {
+  margin-right: 60px;
+}
+
+.organise_team_text p {
+  width: 448px;
+}
+
+.time_collaboration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  color: #3d434d;
+}
+
+.time_collaboration_text {
+  margin-right: 60px;
+}
+
+.time_collaboration_text p {
+  width: 430px;
+}
+
+.time_collaboration img {
+  max-width: 100%;
+}
+
+.scrum_boards {
+  text-align: center;
+  background-color: #30446c;
+  color: #ffffff;
+  padding: 60px 0;
+}
+
+.scrum_boards h2 {
+  margin-top: 0;
+}
+
+.scrum_boards img {
+  max-width: 1140px;
+  width: 100%;
+}
+
+.users {
+  display: flex;
+  justify-content: space-around;
+  padding: 60px 140px;
+  text-align: center;
+}
+
+.users img {
+  width: 180px;
+  height: 180px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #cfd7e5;
+}
+
+.users_item p {
+  width: 210px;
+}
+
+.sign_up {
+  background: url(../img/bg-home.jpg) #30446c;
+  text-align: center;
+  color: #ffffff;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 60px 0 60px;
+}
+
+.sign_up h2 {
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+.copyright {
+  background-color: #30446c;
+  text-align: center;
+  padding: 24px 0;
+  font-size: 0.8125rem;
+  color: #ffffff;
+}
+
+label[for="menu"] {
+  padding: 8px 15px;
+  border: 3px solid #30446c;
+  border-radius: 5px;
+  background-color: #30446c;
+  color: #ffffff;;
+  font-size: 0.75rem;
+  transition: all 0.25s;
+  font-weight: 700;
+  display: none;
+  margin-top: 7px;
+}
+
+input[id="menu"] {
+  display: none;
+}
+
+label[for="menu"]:hover {
+  background-color: #3c527d;
+  border-color: #3c527d;
+  cursor: pointer;
+}
+
+input#menu:checked ~ .nav_bar .right_menu {
+  display: flex;
+  justify-content: center;
+}

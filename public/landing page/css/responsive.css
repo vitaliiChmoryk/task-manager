@@ -1,0 +1,163 @@
+@media (max-width: 992px) {
+
+  .nav_bar {
+    flex-wrap: wrap;
+  }
+
+  .features {
+    padding: 30px 0;
+  }
+
+  .features_content,
+  .organise_team,
+  .time_collaboration {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .features_content-items {
+    margin-right: 0;
+  }
+
+  .features h2 {
+    margin-bottom: 0;
+  }
+
+  .slick-slide img {
+    margin: 0 auto;
+  }
+
+  .organise_team img {
+    margin-right: 0;
+  }
+
+
+  .organise_team_text p,
+  .users_item p,
+  .time_collaboration_text p{
+    width: auto;
+  }
+
+  .users {
+    flex-wrap: wrap;
+    padding: 45px;
+  }
+
+  .users_item {
+    width: 50%;
+  }
+
+  .time_collaboration_text {
+    margin-right: 0
+  }
+
+  label[for="menu"] {
+    display: block;
+  }
+
+  .right_menu {
+    display: none;
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 740px) {
+  .promo {
+    padding: 105px 0 40px;
+  }
+
+  .users_item {
+    width: 100%;
+  }
+
+  .users img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .sign_up,
+  .time_collaboration,
+  .features,
+  .organise_team,
+  .users,
+  .scrum_boards{
+    padding: 40px 0;
+  }
+
+  .copyright {
+    padding: 10px 0;
+  }
+
+}
+
+@media (max-width: 685px) {
+
+  #header {
+    padding: 6px 10px 22px 0;
+  }
+
+  .promo h1 {
+    font-size: 1.75rem;
+  }
+  .promo h2 {
+    font-size: 1.25rem;
+  }
+  .h2_header {
+    font-size: 1.25rem;
+    margin-top: 0;
+  }
+
+  .features h2 {
+    margin-top: 0;
+  }
+
+  #logo {
+    font-size: 2rem;
+  }
+
+  .menu_item {
+    font-size: 1rem;
+    padding-right: 15px;
+    margin-right: 15px;
+  }
+
+  .features_content-item p {
+    font-size: 0.875rem;
+    width: auto;
+  }
+
+  .block_image {
+    width: 65%;
+  }
+
+  .slick-slide img {
+    width: 75%;
+  }
+}
+
+@media (max-width: 480px) {
+  .organise_team_text p,
+  .users_item p,
+  .time_collaboration_text p,
+  .scrum_boards p{
+    font-size: 0.7rem;
+  }
+
+}
+
+
+@media (max-width: 380px) {
+  .fa {
+    padding-left: 5px;
+  }
+
+  .menu_item{
+    padding-right: 10px;
+    margin-right: 10px;
+  }
+
+}
+
+
