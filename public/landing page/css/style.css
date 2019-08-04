@@ -7,9 +7,6 @@
   font-family: Dosis;
   src: url(../fonts/Dosis-SemiBold.ttf);
 }
-nav {
-  margin: 0;
-}
 
 body {
   font-size: 16px;
@@ -43,7 +40,6 @@ body {
   list-style: none;
   margin-bottom: 0;
   padding-left: 0;
-
 }
 
 .menu_item {
@@ -66,7 +62,6 @@ body {
   background: #27303f;
   list-style: none;
   padding: 0;
-
 }
 
 .submenu li a {
