@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 50px;
+            margin-top: 50px;
+        }
+        .gallery div {
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .gallery_img1 {
+            background: url("img/gallery1.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img2 {
+            background: url("img/gallery2.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img3 {
+            background: url("img/gallery3.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img4 {
+            background: url("img/gallery4.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img5 {
+            background: url("img/gallery5.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img6 {
+            background: url("img/gallery6.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img7 {
+            background: url("img/gallery7.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img8 {
+            background: url("img/gallery8.jpg") 50% 50% no-repeat;
+        }
+
+        .gallery_img9 {
+            background: url("img/gallery9.jpg") 50% 50% no-repeat;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<body>
+<header id="header">
+    <input type="checkbox" id="menu">
+    <nav class="nav_bar">
+        <a href="index.html" id="logo">scrum</a>
+        <label for="menu"><i class="fas fa-bars"></i>
+            Menu
+        </label>
+        <ul class="right_menu">
+            <li class="menu_item active"><a href="">Gallery<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="">Item 1</a></li>
+                    <li><a href="">Item 2</a></li>
+                </ul>
+            </li>
+            <li class="menu_item"><a href="contact.html">Contact</a></li>
+            <li class="menu_item login"><a href="">Login</a></li>
+            <li class="menu_item login"><a href="">Sign up</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="gallery">
+    <div class="gallery_img1"></div>
+    <div class="gallery_img2"></div>
+    <div class="gallery_img3"></div>
+    <div class="gallery_img4"></div>
+    <div class="gallery_img5"></div>
+    <div class="gallery_img6"></div>
+    <div class="gallery_img7"></div>
+    <div class="gallery_img8"></div>
+    <div class="gallery_img9"></div>
+</section>
+
+<footer class="copyright" style="bottom: 0; position: absolute; width: 100%;">
+    <p>Copyright © Your Website 2019</p>
+</footer>
+
+<script type="text/javascript" src="js/library/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/library/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
