@@ -420,13 +420,6 @@ header h1 {
   cursor: pointer;
 }
 
-.drag {
-  width: 200px;
-  height: 200px;
-  background: blue;
-  display: inline-block;
-  margin-right: 10px;
-}
 
 .board_wrap {
   display: flex;
@@ -439,7 +432,7 @@ header h1 {
 }
 
 .board_item {
-  height: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   border: 1px solid #eee;

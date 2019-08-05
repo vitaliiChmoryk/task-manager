@@ -36,6 +36,7 @@ class ViewAddTask extends EventEmitter {
     }
 
     findListItem(id) {
+        console.log(this.list);
         return this.list.querySelector(`[data-id="${id}"]`);
     }
 
@@ -51,6 +52,7 @@ class ViewAddTask extends EventEmitter {
 
     handleToggle({ target }) {
         const listItem = target.parentNode;
+        console.log(target.parentNode.className);
         const id = listItem.getAttribute('data-id');
         const completed = target.checked;
 
@@ -103,7 +105,7 @@ class ViewAddTask extends EventEmitter {
 
         checkbox.checked = todo.completed;
 
-        if (todo.completed) {
+        if(todo.completed) {
             listItem.classList.add('completed');
         } else {
             listItem.classList.remove('completed');
@@ -184,6 +186,11 @@ class ViewBacklog extends EventEmitter {
         return elem
     }
 
+    static getFilterActive() {
+        const elem = document.querySelector('[data-role=active-task');
+        return elem
+    }
+
     static getFilterAll() {
         const elem = document.querySelector('[data-role=all-task');
         return elem
@@ -201,8 +208,8 @@ class ViewBoard extends EventEmitter {
 
     createListItem(todo) {
         const label = createElement('label', { className: 'title' }, todo.title);
-        const item = createElement('li', { className: `board_item${todo.completed ? ' completed': ''}`, 'id': todo.id, 'draggable':"true" }, label);
-        return item
+        const item = createElement('li', { className: `board_item${todo.completed ? ' completed': ''}`, 'data-id': todo.id, 'id': todo.id, 'draggable':"true" }, label);
+        return this.addEventListeners(item);
     }
 
 
@@ -211,26 +218,74 @@ class ViewBoard extends EventEmitter {
             const listItem = this.createListItem(todo);
             if(todo.completed) {
                 this.done.appendChild(listItem);
+            } else if(todo.completed == null) {
+                this.active.appendChild(listItem);
             } else {
                 this.todo.appendChild(listItem);
             }
         });
     }
+
     findListItem(id) {
-        return this.list.querySelector(`[id="${id}"]`);
+
+        return this.todo.querySelector(`[data-id="${id}"]`);
     }
 
+    findListItemActive(id) {
+
+        return this.active.querySelector(`[data-id="${id}"]`);
+    }
+
+    findListItemDone(id) {
+
+        return this.done.querySelector(`[data-id="${id}"]`);
+    }
+
+    addEventListeners(item) {
+
+        const elem = item;
+
+        elem.addEventListener('click', this.handleToggle.bind(this));
+
+        return item;
+    }
+
+    handleToggle({ target }) {
+        const listItem = target;
+        console.log(target.parentNode.className);
+        const id = listItem.getAttribute('data-id');
+        console.log(id);
+        let completed;
+        if (target.parentNode.className === 'todo_task'){
+            completed = false;
+        } else if(target.parentNode.className === 'active_task') {
+            completed = null;
+        } else {
+            completed = true;
+        }
+        this.emit('click', { id, completed });
+    }
+
+
     toggleItem(todo) {
-        const listItem = this.findListItem(todo.id);
-        let result = parent.contains(listItem);
-        return console.log(result);
-        // checkbox.checked = todo.completed;
-        //
-        // if (todo.completed) {
-        //     listItem.classList.add('completed');
-        // } else {
-        //     listItem.classList.remove('completed');
-        // }
+        console.log(todo);
+        let listItem = this.findListItem(todo.id);
+        if (listItem == null) {
+            listItem = this.findListItemActive(todo.id);
+            if (listItem == null) {
+                listItem = this.findListItemDone(todo.id);
+            }
+        }
+        if (todo.completed === null) {
+            listItem.classList.add('active');
+            listItem.classList.remove('completed');
+        } else if(todo.completed) {
+            listItem.classList.add('completed');
+            listItem.classList.remove('active');
+        } else {
+            listItem.classList.remove('completed');
+            listItem.classList.remove('active');
+        }
     }
 
     static getBoardElemTodo() {

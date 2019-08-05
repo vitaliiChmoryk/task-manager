@@ -10,13 +10,8 @@ const boardNavNode = document.querySelector('[data-role=nav-board]');
 const backlogNavNode = document.querySelector('[data-role=nav-backlog]');
 const addTaskNavNode = document.querySelector('[data-role=nav-task]');
 
-const arrowUp = ViewBacklog.getArrowUp();
-const arrowDown = ViewBacklog.getArrowDown();
-const completed = ViewBacklog.getFilterCompl();
-const uncompleted = ViewBacklog.getFilterUncompl();
-const all = ViewBacklog.getFilterAll();
-
 let activeNavNode;
+
 class Controller {
     constructor(model, view) {
         this.model = model;
@@ -26,6 +21,7 @@ class Controller {
         view.on('toggle', this.toggleTodo.bind(this));
         view.on('edit', this.editTodo.bind(this));
         view.on('remove', this.removeTodo.bind(this));
+        view.on('click', this.toggleTodoBoard.bind(this));
 
         view.show(model.items);
     }
@@ -42,6 +38,12 @@ class Controller {
 
     toggleTodo({ id, completed }) {
         const item = this.model.updateItem(id, { completed });
+
+        this.view.toggleItem(item);
+    }
+
+    toggleTodoBoard({ id, completed }) {
+        const item = this.model.updateItemBoard(id, { completed });
 
         this.view.toggleItem(item);
     }
@@ -100,6 +102,16 @@ function filterUncompleted(array){
     return completedTask;
 }
 
+function filterActive(array){
+    console.log(array);
+    let activeTask = array.filter(function (obj) {
+        return obj.completed == null ? obj: '';
+    });
+    if (activeTask.length === 0)
+        activeTask.push({title:'You don\'t have active tasks'});
+    return activeTask;
+}
+
 function sortAsc() {
     BacklogPage.render();
 
@@ -107,6 +119,7 @@ function sortAsc() {
     const arrowDown = ViewBacklog.getArrowDown();
     const completed = ViewBacklog.getFilterCompl();
     const uncompleted = ViewBacklog.getFilterUncompl();
+    const active = ViewBacklog.getFilterActive();
     const all = ViewBacklog.getFilterAll();
 
     const state = load();
@@ -122,6 +135,7 @@ function sortAsc() {
     arrowDown.addEventListener('click', sortAsc);
     completed.addEventListener('click', completedTasks);
     uncompleted.addEventListener('click', uncompletedTasks);
+    active.addEventListener('click', activeTasks);
     all.addEventListener('click', allTasks);
 }
 
@@ -132,6 +146,7 @@ function sortDesc() {
     const arrowDown = ViewBacklog.getArrowDown();
     const completed = ViewBacklog.getFilterCompl();
     const uncompleted = ViewBacklog.getFilterUncompl();
+    const active = ViewBacklog.getFilterActive();
     const all = ViewBacklog.getFilterAll();
 
     const state = load();
@@ -148,6 +163,7 @@ function sortDesc() {
     arrowDown.addEventListener('click', sortAsc);
     completed.addEventListener('click', completedTasks);
     uncompleted.addEventListener('click', uncompletedTasks);
+    active.addEventListener('click', activeTasks);
     all.addEventListener('click', allTasks);
 }
 
@@ -158,6 +174,7 @@ function completedTasks() {
     const arrowDown = ViewBacklog.getArrowDown();
     const completed = ViewBacklog.getFilterCompl();
     const uncompleted = ViewBacklog.getFilterUncompl();
+    const active = ViewBacklog.getFilterActive();
     const all = ViewBacklog.getFilterAll();
 
     completed.classList.add('active');
@@ -174,6 +191,7 @@ function completedTasks() {
     arrowDown.addEventListener('click', sortAsc);
     completed.addEventListener('click', completedTasks);
     uncompleted.addEventListener('click', uncompletedTasks);
+    active.addEventListener('click', activeTasks);
     all.addEventListener('click', allTasks);
 }
 
@@ -184,6 +202,7 @@ function uncompletedTasks() {
     const arrowDown = ViewBacklog.getArrowDown();
     const completed = ViewBacklog.getFilterCompl();
     const uncompleted = ViewBacklog.getFilterUncompl();
+    const active = ViewBacklog.getFilterActive();
     const all = ViewBacklog.getFilterAll();
 
     uncompleted.classList.add('active');
@@ -200,6 +219,36 @@ function uncompletedTasks() {
     arrowDown.addEventListener('click', sortAsc);
     completed.addEventListener('click', completedTasks);
     uncompleted.addEventListener('click', uncompletedTasks);
+    active.addEventListener('click', activeTasks);
+    all.addEventListener('click', allTasks);
+}
+
+
+function activeTasks() {
+    BacklogPage.render();
+
+    const arrowUp = ViewBacklog.getArrowUp();
+    const arrowDown = ViewBacklog.getArrowDown();
+    const completed = ViewBacklog.getFilterCompl();
+    const uncompleted = ViewBacklog.getFilterUncompl();
+    const active = ViewBacklog.getFilterActive();
+    const all = ViewBacklog.getFilterAll();
+
+    active.classList.add('active');
+
+    const state = load();
+    const filter = filterActive(state);
+    const model = new Model(filter || undefined);
+    model.on('change', state => save(state));
+
+    const view = new ViewBacklog();
+    const controller = new Controller(model, view);
+
+    arrowUp.addEventListener('click', sortDesc);
+    arrowDown.addEventListener('click', sortAsc);
+    completed.addEventListener('click', completedTasks);
+    uncompleted.addEventListener('click', uncompletedTasks);
+    active.addEventListener('click', activeTasks);
     all.addEventListener('click', allTasks);
 }
 
@@ -209,6 +258,7 @@ function allTasks() {
     const arrowDown = ViewBacklog.getArrowDown();
     const completed = ViewBacklog.getFilterCompl();
     const uncompleted = ViewBacklog.getFilterUncompl();
+    const active = ViewBacklog.getFilterActive();
     const all = ViewBacklog.getFilterAll();
 
     all.classList.add('active');
@@ -224,6 +274,7 @@ function allTasks() {
     arrowDown.addEventListener('click', sortAsc);
     completed.addEventListener('click', completedTasks);
     uncompleted.addEventListener('click', uncompletedTasks);
+    active.addEventListener('click', activeTasks);
     all.addEventListener('click', allTasks);
 }
 
@@ -261,7 +312,9 @@ export default {
         const arrowDown = ViewBacklog.getArrowDown();
         const completed = ViewBacklog.getFilterCompl();
         const uncompleted = ViewBacklog.getFilterUncompl();
+        const active = ViewBacklog.getFilterActive();
         const all = ViewBacklog.getFilterAll();
+
 
         const state = load();
         const model = new Model(state || undefined);
@@ -273,8 +326,8 @@ export default {
         arrowDown.addEventListener('click', sortAsc);
         completed.addEventListener('click', completedTasks);
         uncompleted.addEventListener('click', uncompletedTasks);
+        active.addEventListener('click', activeTasks);
         all.addEventListener('click', allTasks);
-
     },
 
     async boardRoute() {
@@ -287,7 +340,7 @@ export default {
         const state = load();
         const model = new Model(state || undefined);
 
-        model.on('change', state => save(state));
+        model.on('click', state => save(state));
 
         const view = new ViewBoard();
         const controller = new Controller(model, view);

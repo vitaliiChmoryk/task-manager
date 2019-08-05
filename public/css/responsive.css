@@ -1,0 +1,39 @@
+@media (max-width: 875px) {
+  .nav_list-text,
+  .team_name {
+    display: none;
+  }
+
+  .nav_list-item {
+    margin-top: 30px;
+  }
+
+  .left_menu {
+    width: 19%;
+  }
+
+  .main_board {
+    width: 81%;
+    left: 19%;
+  }
+
+  .nav_home {
+    display: block;
+  }
+
+  .nav_list {
+    align-items: center;
+  }
+
+  .fas {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .filter_wrap h4 {
+    display: none;
+  }
+
+}

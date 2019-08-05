@@ -18,6 +18,7 @@ class Model extends EventEmitter {
     }
 
     updateItem(id, data) {
+        console.log(id, data);
         const item = this.getItem(id);
 
         Object.keys(data).forEach(prop => item[prop] = data[prop]);
@@ -34,6 +35,16 @@ class Model extends EventEmitter {
             this.items.splice(index, 1);
             this.emit('change', this.items);
         }
+    }
+
+    updateItemBoard(id, data) {
+        const item = this.getItem(id);
+        console.log(id,data)
+        Object.keys(data).forEach(prop => item[prop] = data[prop]);
+
+        this.emit('click', this.items);
+
+        return item;
     }
 }
 
